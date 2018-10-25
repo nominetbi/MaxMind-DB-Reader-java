@@ -6,11 +6,6 @@ import java.nio.ByteBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -262,27 +257,26 @@ final class Decoder {
     }
 
     private JsonNode decodeArray(int size) throws IOException {
+        ArrayNode array = OBJECT_MAPPER.createArrayNode();
 
-        List<JsonNode> array = new ArrayList<JsonNode>(size);
         for (int i = 0; i < size; i++) {
             JsonNode r = this.decode();
             array.add(r);
         }
 
-        return new ArrayNode(OBJECT_MAPPER.getNodeFactory(), Collections.unmodifiableList(array));
+        return array;
     }
 
     private JsonNode decodeMap(int size) throws IOException {
-        int capacity = (int) (size / 0.75F + 1.0F);
-        Map<String, JsonNode> map = new HashMap<String, JsonNode>(capacity);
+        ObjectNode map = OBJECT_MAPPER.createObjectNode();
 
         for (int i = 0; i < size; i++) {
             String key = this.decode().asText();
             JsonNode value = this.decode();
-            map.put(key, value);
+            map.set(key, value);
         }
 
-        return new ObjectNode(OBJECT_MAPPER.getNodeFactory(), Collections.unmodifiableMap(map));
+        return map;
     }
 
     private byte[] getByteArray(int length) {

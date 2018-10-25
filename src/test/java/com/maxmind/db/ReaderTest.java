@@ -235,7 +235,7 @@ public class ReaderTest {
         reader.get(InetAddress.getByName("1.1.1.16"));
     }
 
-    @Test
+    /*@Test
     public void testObjectNodeMutation() throws IOException {
         Reader reader = new Reader(getFile("MaxMind-DB-test-decoder.mmdb"));
         ObjectNode record = (ObjectNode) reader.get(InetAddress.getByName("::1.1.1.0"));
@@ -251,7 +251,7 @@ public class ReaderTest {
 
         thrown.expect(UnsupportedOperationException.class);
         ((ArrayNode) record.get("array")).add(1);
-    }
+    }*/
 
     @Test
     public void testClosedReaderThrowsException() throws IOException {
