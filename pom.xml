@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>uk.nominet</groupId>
     <artifactId>maxmind-db</artifactId>
-    <version>1.2.3-jackson-2.6.5</version>
+    <version>1.2.3-jackson-2.6.7</version>
     <packaging>jar</packaging>
     <name>MaxMind DB Reader</name>
-    <description>Reader for MaxMind DB using jackson 2.6.5 for compatability with Spark 2.2.0</description>
+    <description>Reader for MaxMind DB using jackson 2.6.7 for compatability with Spark 2.4.3</description>
     
     <organization>
         <name>Nominet UK</name>
@@ -51,7 +51,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.6.5</version>
+            <version>2.6.7.1</version>
             <optional>true</optional>
         </dependency>
     </dependencies>
